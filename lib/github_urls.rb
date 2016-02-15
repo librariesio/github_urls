@@ -18,7 +18,7 @@ module GithubUrls
     url_string = url_string.split('=')[-1]
     url_string = url_string.gsub(/((git|ssh|hg|svn|scm)+?:)/, '')
     url_string = url_string.gsub(/(https:https:)/, 'https:')
-    github_regex = /((git\+)?(((https|http)?:\/\/(www\.)?(wiki\.)?)|\/\/git@|https:\/\/git@|git@||git@))?(www\.)?(ssh\.)?(git\.)?(gith\.)?(wiki\.)?(github.com|github.org|raw.githubusercontent.com)(:|\/)/i
+    github_regex = /((git\+)?(((https|http)?:\/\/(www\.)?(wiki\.)?)|\/\/git@|https:\/\/git@|git@||git@))?(www\.)?(ssh\.)?(raw\.)?(git\.)?(gith\.)?(wiki\.)?(github.com|github.org|raw.githubusercontent.com)(:|\/)/i
 
     url_string = url_string.gsub(github_regex, '').strip
     url_string = url_string.gsub(/(\.git|\/)$/i, '')

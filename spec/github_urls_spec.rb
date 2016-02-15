@@ -57,11 +57,10 @@ describe GithubUrls do
       ['git@git@github.com:dead-horse/webT.git', 'dead-horse/webT'],
       ['git@github.com:agilemd/then.git', 'agilemd/then'],
       ['https : //github.com/alex101/texter.js.git', 'alex101/texter.js'],
-
       ['git@gith.github.com:calvimor/starsNames.git', 'calvimor/starsNames'],
       ['git@git.github.com:daddye/stitchme.git', 'daddye/stitchme'],
-      ['git@Horsed-github.com:Horsed/chinaski.git', 'Horsed/chinaski'],
-      ['git://assemble.github.com/assemble/dry.git', 'assemble/dry'],
+      ['github.com/1995hnagamin/hubot-achievements', '1995hnagamin/hubot-achievements'],
+
       ['git//github.com/divyavanmahajan/jsforce_downloader.git', 'divyavanmahajan/jsforce_downloader'],
       ['git+ssh://gregoryfoster@github.com/stori_es-sdk-node.git', 'gregoryfoster/stori_es-sdk-node'],
       ['https://raw.github.com/zdne/spacegray-xcode/master/Space%20Gray.dvtcolortheme', 'zdne/spacegray-xcode'],
@@ -75,8 +74,9 @@ describe GithubUrls do
       ['scm:git:ssh//github.com/switchyard/core.git/switchyard-release/switchyard-release-as7', 'switchyard/core'],
       ['scm:git:ssh://git@ssh.github.com/dcm4che/jdbc-jboss-modules.git', 'dcm4che/jdbc-jboss-modules'],
       ['scm:git:ssh://git@ssh.github.com/dcm4che/dcm4che.git/dcm4che-ws-rs', 'dcm4che/dcm4che'],
-      ['github.com/1995hnagamin/hubot-achievements', '1995hnagamin/hubot-achievements'],
-      ['https://camlistore.org/third_party/github.com/go-sql-driver/mysql', 'go-sql-driver/mysql']
+      ['https://camlistore.org/third_party/github.com/go-sql-driver/mysql', 'go-sql-driver/mysql'],
+      ['git://assemble.github.com/assemble/dry.git', 'assemble/dry'],
+      ['git@Horsed-github.com:Horsed/chinaski.git', 'Horsed/chinaski']
     ].each do |row|
       url, full_name = row
       result = GithubUrls.parse(url)

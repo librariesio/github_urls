@@ -22,6 +22,7 @@ module GithubUrls
 
     url_string = url_string.gsub(github_regex, '').strip
     url_string = url_string.gsub(/(\.git|\/)$/i, '')
+    url_string = url_string.gsub(/git\/\//i, '')
     url_string = url_string.gsub(/(#\S*)$/i, '')
     url_string = url_string.gsub(/(\?\S*)$/i, '')
     url_string = url_string.gsub(/>|<|(|)|[|]/, '')

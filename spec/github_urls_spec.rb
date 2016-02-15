@@ -60,8 +60,8 @@ describe GithubUrls do
       ['git@gith.github.com:calvimor/starsNames.git', 'calvimor/starsNames'],
       ['git@git.github.com:daddye/stitchme.git', 'daddye/stitchme'],
       ['github.com/1995hnagamin/hubot-achievements', '1995hnagamin/hubot-achievements'],
-
       ['git//github.com/divyavanmahajan/jsforce_downloader.git', 'divyavanmahajan/jsforce_downloader'],
+
       ['git+ssh://gregoryfoster@github.com/stori_es-sdk-node.git', 'gregoryfoster/stori_es-sdk-node'],
       ['https://raw.github.com/zdne/spacegray-xcode/master/Space%20Gray.dvtcolortheme', 'zdne/spacegray-xcode'],
       ['scm:git:github.com:eskatos/javafx-maven-plugin.git/javafx-maven-plugin', 'eskatos/javafx-maven-plugin'],

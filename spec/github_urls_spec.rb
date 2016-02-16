@@ -57,10 +57,10 @@ describe GithubUrls do
       ['git@git@github.com:dead-horse/webT.git', 'dead-horse/webT'],
       ['git@github.com:agilemd/then.git', 'agilemd/then'],
       ['https : //github.com/alex101/texter.js.git', 'alex101/texter.js'],
-      ['git@gith.github.com:calvimor/starsNames.git', 'calvimor/starsNames'],
       ['git@git.github.com:daddye/stitchme.git', 'daddye/stitchme'],
       ['github.com/1995hnagamin/hubot-achievements', '1995hnagamin/hubot-achievements'],
-      ['git//github.com/divyavanmahajan/jsforce_downloader.git', 'divyavanmahajan/jsforce_downloader']
+      ['git//github.com/divyavanmahajan/jsforce_downloader.git', 'divyavanmahajan/jsforce_downloader'],
+      ['scm:git:https://michaelkrog@github.com/michaelkrog/filter4j.git', 'michaelkrog/filter4j'],
     ].each do |row|
       url, full_name = row
       result = GithubUrls.parse(url)
@@ -76,7 +76,6 @@ describe GithubUrls do
       ['scm:git:github.com:eskatos/javafx-maven-plugin.git/javafx-maven-plugin', 'eskatos/javafx-maven-plugin'],
       ['scm:git:https://${appverseweb.user.name}:${appverseweb.user.password}@github.com/Appverse/appverse-web.git/appverse-web-tools-pom/appverse-web-tools-jpa-ddl-generator-pom/appverse-web-tools-jpa-ddl-generator-plugin', 'Appverse/appverse-web'],
       ['scm:git:https//github.com/DozerMapper/dozer/dozer-spring', 'DozerMapper/dozer'],
-      ['scm:git:https://michaelkrog@github.com/michaelkrog/filter4j.git', 'michaelkrog/filter4j'],
       ['scm:git:https://michaelkrog@github.com/michaelkrog/filter4j.git/filter4j-core', 'michaelkrog/filter4j'],
       ['scm:git:https://matthieu-vergne@github.com/matthieu-vergne/Translation.git/translation-editor', 'matthieu-vergne/Translation'],
       ['scm:git:ssh@github.com:claudius108/kuberam.git/junit-tests', 'claudius108/kuberam'],
@@ -95,7 +94,10 @@ describe GithubUrls do
 
   it 'doesnt parses non-github urls' do
     [
-      'https://google.com'
+      'https://google.com',
+      'https://github.com/foo',
+      'https://github.com',
+      'https://foo.github.io'
     ].each do |url|
       result = GithubUrls.parse(url)
       expect(result).to eq(nil)

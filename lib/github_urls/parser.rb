@@ -1,11 +1,22 @@
 module GithubUrls
   class Parser
-    def self.parse(url_string)
-      return nil if url_string.nil?
-      return nil unless url_string.include?('github')
-      if extract_github_io_name(url_string)
-        return extract_github_io_name(url_string)
+    def self.parse(url)
+      new(url).parse
+    end
+
+    attr_reader :url
+
+    def initialize(url)
+      @url = url
+    end
+
+    def parse
+      return nil if url.nil?
+      return nil unless url.include?('github')
+      if extract_github_io_name(url)
+        return extract_github_io_name(url)
       end
+      url_string = url
       url_string = url_string.gsub(/\s/, '')
       url_string = url_string.split('@')[-1]
       url_string = url_string.split('=')[-1]
@@ -22,7 +33,7 @@ module GithubUrls
       url_string.join('/')
     end
 
-    def self.extract_github_io_name(url)
+    def extract_github_io_name(url)
       return nil if url.nil?
       return nil if url.match(/www.github.(io|com|org)/i)
       match = url.match(/([\w\.@\:\-_~]+)\.github\.(io|com|org)\/([\w\.@\:\-\_\~]+)/i)

@@ -9,6 +9,6 @@ end
 
 module GithubUrls
   def self.parse(url_string)
-    Parser.parse(url_string)
+    Parser.new(url_string).parse
   end
 end

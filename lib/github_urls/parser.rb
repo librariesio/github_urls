@@ -13,8 +13,8 @@ module GithubUrls
     def parse
       return nil if url.nil?
       return nil unless url.include?('github')
-      if extract_github_io_name(url)
-        return extract_github_io_name(url)
+      if extract_github_io_name
+        return extract_github_io_name
       end
 
       remove_whitespace
@@ -82,7 +82,7 @@ module GithubUrls
       url.gsub!(/(github.io|github.com|github.org|raw.githubusercontent.com)+?(:|\/)?/i, '')
     end
 
-    def extract_github_io_name(url)
+    def extract_github_io_name
       return nil if url.match(/www.github.(io|com|org)/i)
       match = url.match(/([\w\.@\:\-_~]+)\.github\.(io|com|org)\/([\w\.@\:\-\_\~]+)/i)
       return nil unless match && match.length == 4

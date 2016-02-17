@@ -18,6 +18,8 @@ module GithubUrls
       end
       url_string = url
       url_string = url_string.gsub(/\s/, '')
+      url_string = url_string.gsub(/(#\S*)$/i, '')
+      url_string = url_string.gsub(/(\?\S*)$/i, '')
       url_string = url_string.split('@')[-1]
       url_string = url_string.split('=')[-1]
       url_string = url_string.gsub(/(((git|ssh|hg|svn|scm|http|https)+?:)+?)/i, '')
@@ -25,8 +27,6 @@ module GithubUrls
       url_string = url_string.gsub(/(github.io|github.com|github.org|raw.githubusercontent.com)+?(:|\/)?/i, '')
       url_string = url_string.gsub(/(\.git|\/)$/i, '')
       url_string = url_string.gsub(/git\/\//i, '')
-      url_string = url_string.gsub(/(#\S*)$/i, '')
-      url_string = url_string.gsub(/(\?\S*)$/i, '')
       url_string = url_string.gsub(/>|<|(|)|[|]/, '')
       url_string = url_string.split('/').reject(&:blank?)[0..1]
       return nil unless url_string.length == 2

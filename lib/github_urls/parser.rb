@@ -11,8 +11,8 @@ module GithubUrls
     end
 
     def parse
-      return nil if url.nil?
-      return nil unless url.include?('github')
+      return nil unless parseable?
+
       if extract_github_io_name
         return extract_github_io_name
       end
@@ -32,6 +32,10 @@ module GithubUrls
 
       return nil unless url.length == 2
       url.join('/')
+    end
+
+    def parseable?
+      !url.nil? && url.include?('github')
     end
 
     def remove_extra_segments

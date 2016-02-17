@@ -13,8 +13,8 @@ module GithubUrls
     def parse
       return nil unless parseable?
 
-      if extract_github_io_name
-        return extract_github_io_name
+      if match = extractable_early?
+        return match
       end
 
       remove_whitespace
@@ -32,6 +32,17 @@ module GithubUrls
 
       return nil unless url.length == 2
       url.join('/')
+    end
+
+    def extractable_early?
+      return false if github_website_url?
+
+      match = url.match(/([\w\.@\:\-_~]+)\.github\.(io|com|org)\/([\w\.@\:\-\_\~]+)/i)
+      if match && match.length == 4
+        return "#{match[1]}/#{match[3]}"
+      end
+
+      nil
     end
 
     def parseable?
@@ -88,14 +99,6 @@ module GithubUrls
 
     def github_website_url?
       url.match(/www.github.(io|com|org)/i)
-    end
-
-    def extract_github_io_name
-      return nil if github_website_url?
-
-      match = url.match(/([\w\.@\:\-_~]+)\.github\.(io|com|org)\/([\w\.@\:\-\_\~]+)/i)
-      return nil unless match && match.length == 4
-      "#{match[1]}/#{match[3]}"
     end
   end
 end

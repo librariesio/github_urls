@@ -4,7 +4,7 @@ module GithubUrls
       new(url).parse
     end
 
-    attr_reader :url
+    attr_accessor :url
 
     def initialize(url)
       @url = url
@@ -16,70 +16,70 @@ module GithubUrls
       if extract_github_io_name(url)
         return extract_github_io_name(url)
       end
-      url_string = url
-      url_string = remove_whitespace(url_string)
-      url_string = remove_brackets(url_string)
-      url_string = remove_anchors(url_string)
-      url_string = remove_querystring(url_string)
-      url_string = remove_auth_user(url_string)
-      url_string = remove_equals_sign(url_string)
-      url_string = remove_scheme(url_string)
-      url_string = remove_subdomain(url_string)
-      url_string = remove_github_domain(url_string)
-      url_string = remove_git_extension(url_string)
-      url_string = remove_git_scheme(url_string)
-      url_string = remove_extra_segments(url_string)
 
-      return nil unless url_string.length == 2
-      url_string.join('/')
+      remove_whitespace
+      remove_brackets
+      remove_anchors
+      remove_querystring
+      remove_auth_user
+      remove_equals_sign
+      remove_scheme
+      remove_subdomain
+      remove_github_domain
+      remove_git_extension
+      remove_git_scheme
+      remove_extra_segments
+
+      return nil unless url.length == 2
+      url.join('/')
     end
 
-    def remove_extra_segments(string)
-      string.split('/').reject(&:blank?)[0..1]
+    def remove_extra_segments
+      self.url = url.split('/').reject(&:blank?)[0..1]
     end
 
-    def remove_brackets(string)
-      string.gsub(/>|<|\(|\)|\[|\]/, '')
+    def remove_brackets
+      url.gsub!(/>|<|\(|\)|\[|\]/, '')
     end
 
-    def remove_querystring(string)
-      string.gsub(/(\?\S*)$/i, '')
+    def remove_querystring
+      url.gsub!(/(\?\S*)$/i, '')
     end
 
-    def remove_anchors(string)
-      string.gsub(/(#\S*)$/i, '')
+    def remove_anchors
+      url.gsub!(/(#\S*)$/i, '')
     end
 
-    def remove_git_scheme(string)
-      string.gsub(/git\/\//i, '')
+    def remove_git_scheme
+      url.gsub!(/git\/\//i, '')
     end
 
-    def remove_git_extension(string)
-      string.gsub(/(\.git|\/)$/i, '')
+    def remove_git_extension
+      url.gsub!(/(\.git|\/)$/i, '')
     end
 
-    def remove_equals_sign(string)
-      string.split('=')[-1]
+    def remove_equals_sign
+      self.url = url.split('=')[-1]
     end
 
-    def remove_auth_user(string)
-      string.split('@')[-1]
+    def remove_auth_user
+      self.url = url.split('@')[-1]
     end
 
-    def remove_whitespace(string)
-      string.gsub(/\s/, '')
+    def remove_whitespace
+      url.gsub!(/\s/, '')
     end
 
-    def remove_scheme(string)
-      string.gsub(/(((git|ssh|hg|svn|scm|http|https)+?:)+?)/i, '')
+    def remove_scheme
+      url.gsub!(/(((git|ssh|hg|svn|scm|http|https)+?:)+?)/i, '')
     end
 
-    def remove_subdomain(string)
-      string.gsub(/(www|ssh|raw|git|wiki)+?\./i, '')
+    def remove_subdomain
+      url.gsub!(/(www|ssh|raw|git|wiki)+?\./i, '')
     end
 
-    def remove_github_domain(string)
-      string.gsub(/(github.io|github.com|github.org|raw.githubusercontent.com)+?(:|\/)?/i, '')
+    def remove_github_domain
+      url.gsub!(/(github.io|github.com|github.org|raw.githubusercontent.com)+?(:|\/)?/i, '')
     end
 
     def extract_github_io_name(url)

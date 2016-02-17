@@ -82,8 +82,13 @@ module GithubUrls
       url.gsub!(/(github.io|github.com|github.org|raw.githubusercontent.com)+?(:|\/)?/i, '')
     end
 
+    def github_website_url?
+      url.match(/www.github.(io|com|org)/i)
+    end
+
     def extract_github_io_name
-      return nil if url.match(/www.github.(io|com|org)/i)
+      return nil if github_website_url?
+
       match = url.match(/([\w\.@\:\-_~]+)\.github\.(io|com|org)\/([\w\.@\:\-\_\~]+)/i)
       return nil unless match && match.length == 4
       "#{match[1]}/#{match[3]}"

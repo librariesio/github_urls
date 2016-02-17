@@ -83,7 +83,6 @@ module GithubUrls
     end
 
     def extract_github_io_name(url)
-      return nil if url.nil?
       return nil if url.match(/www.github.(io|com|org)/i)
       match = url.match(/([\w\.@\:\-_~]+)\.github\.(io|com|org)\/([\w\.@\:\-\_\~]+)/i)
       return nil unless match && match.length == 4

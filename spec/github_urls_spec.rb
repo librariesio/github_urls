@@ -84,6 +84,18 @@ describe GithubUrls do
     expect(result).to eq(full_name)
   end
 
+  it "handles brackets" do
+    [
+      ['[scm:git:https://michaelkrog@github.com/michaelkrog/filter4j.git]', 'michaelkrog/filter4j'],
+      ['<scm:git:https://michaelkrog@github.com/michaelkrog/filter4j.git>', 'michaelkrog/filter4j'],
+      ['(scm:git:https://michaelkrog@github.com/michaelkrog/filter4j.git)', 'michaelkrog/filter4j'],
+    ].each do |row|
+      url, full_name = row
+      result = GithubUrls.parse(url)
+      expect(result).to eq(full_name)
+    end
+  end
+
   it 'parses more github urls' do
     skip
     [

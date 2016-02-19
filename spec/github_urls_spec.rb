@@ -68,6 +68,34 @@ describe GithubUrls do
     end
   end
 
+  it "handles anchors" do
+    full_name = 'michaelkrog/filter4j'
+    url       = 'scm:git:https://michaelkrog@github.com/michaelkrog/filter4j.git#anchor'
+    result    = GithubUrls.parse(url)
+
+    expect(result).to eq(full_name)
+  end
+
+  it "handles querystrings" do
+    full_name = 'michaelkrog/filter4j'
+    url       = 'scm:git:https://michaelkrog@github.com/michaelkrog/filter4j.git?foo=bar&wut=wah'
+    result    = GithubUrls.parse(url)
+
+    expect(result).to eq(full_name)
+  end
+
+  it "handles brackets" do
+    [
+      ['[scm:git:https://michaelkrog@github.com/michaelkrog/filter4j.git]', 'michaelkrog/filter4j'],
+      ['<scm:git:https://michaelkrog@github.com/michaelkrog/filter4j.git>', 'michaelkrog/filter4j'],
+      ['(scm:git:https://michaelkrog@github.com/michaelkrog/filter4j.git)', 'michaelkrog/filter4j'],
+    ].each do |row|
+      url, full_name = row
+      result = GithubUrls.parse(url)
+      expect(result).to eq(full_name)
+    end
+  end
+
   it 'parses more github urls' do
     skip
     [

@@ -29,9 +29,7 @@ module GithubUrls
       remove_git_extension
       remove_git_scheme
       remove_extra_segments
-
-      return nil unless url.length == 2
-      url.join('/')
+      format_url
     end
 
     def extractable_early?
@@ -99,6 +97,11 @@ module GithubUrls
 
     def github_website_url?
       url.match(/www.github.(io|com|org)/i)
+    end
+
+    def format_url
+      return nil unless url.length == 2
+      url.join('/')
     end
   end
 end

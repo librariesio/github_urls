@@ -13,10 +13,14 @@ module GithubUrls
     def parse
       return nil unless parseable?
 
-      if match = extractable_early?
-        return match
+      if url = extractable_early?
+        url
+      else
+        clean_url
       end
+    end
 
+    def clean_url
       remove_whitespace
       remove_brackets
       remove_anchors

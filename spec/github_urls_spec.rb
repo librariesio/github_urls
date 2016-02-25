@@ -9,6 +9,7 @@ describe GithubUrls do
     [
       ['https://github.com/maxcdn/shml/', 'maxcdn/shml'],
       ['https://foo.github.io/bar', 'foo/bar'],
+      ['git+https://github.com/hugojosefson/express-cluster-stability.git', 'hugojosefson/express-cluster-stability'],
       ['sughodke.github.com/linky.js/', 'sughodke/linky.js'],
       ['www.github.com/37point2/brainfuckifyjs', '37point2/brainfuckifyjs'],
       ['ssh://git@github.org:brozeph/node-craigslist.git', 'brozeph/node-craigslist'],

@@ -88,7 +88,7 @@ module GithubUrls
     end
 
     def remove_scheme
-      url.gsub!(/(((git|ssh|hg|svn|scm|http|https)+?:)+?)/i, '')
+      url.gsub!(/(((git\+https|git|ssh|hg|svn|scm|http|https)+?:)+?)/i, '')
     end
 
     def remove_subdomain
@@ -109,4 +109,3 @@ module GithubUrls
     end
   end
 end
-

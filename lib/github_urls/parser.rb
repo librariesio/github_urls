@@ -28,6 +28,7 @@ module GithubUrls
       remove_auth_user
       remove_equals_sign
       remove_scheme
+      return nil unless github_domain?
       remove_subdomain
       remove_github_domain
       remove_git_extension
@@ -101,6 +102,10 @@ module GithubUrls
 
     def github_website_url?
       url.match(/www.github.(io|com|org)/i)
+    end
+
+    def github_domain?
+      url.match(/github\.(io|com|org)/i)
     end
 
     def format_url

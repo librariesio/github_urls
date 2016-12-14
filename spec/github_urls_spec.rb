@@ -126,7 +126,8 @@ describe GithubUrls do
       'https://google.com',
       'https://github.com/foo',
       'https://github.com',
-      'https://foo.github.io'
+      'https://foo.github.io',
+      'https://github.ibm.com/apiconnect/apiconnect'
     ].each do |url|
       result = GithubUrls.parse(url)
       expect(result).to eq(nil)

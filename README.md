@@ -1,5 +1,7 @@
 # GithubUrls
 
+:warning: This library has been merged into https://libraries.io and will no longer be maintained :warning:
+
 A collection of helpers for parsing and generating GitHub urls extracted from <https://libraries.io>
 
 ## Installation
